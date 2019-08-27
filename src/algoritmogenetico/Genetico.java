@@ -13,7 +13,7 @@ public class Genetico {
     public static final double TAXADEMUTACAO = 0.05;
     static final double TAXADECRUZAMENTO = 0.9;
 
-    static final boolean ELITISMO = true;
+    static final boolean ELITISMO = false;
     static final boolean ESTAGNA = true; //se controla ou nao a estagnacao
     static final double VALORESTAGNA = 200; //valor da estagnacao maxima
 
@@ -128,6 +128,7 @@ public class Genetico {
     }
 
     private ArrayList<Individuo> cruzamento(ArrayList<Individuo> pais) {
+        
         double[] pai0 = pais.get(0).getGenes();
         double[] pai1 = pais.get(1).getGenes();
 

@@ -14,9 +14,12 @@ public class Individuo implements Comparable<Individuo> {
     //atributos do problema especifico
     private double qtdMilho;
     private double qtdSoja;
+    
+    private ArrayList<Item> itens;
 
     //cria um individuo aleatorio da primeira geracao
     public Individuo() {
+        itens = new ArrayList<>();
         do {
             this.setQtdItens();
         } while (!validar());
@@ -45,6 +48,7 @@ public class Individuo implements Comparable<Individuo> {
         
         if(peso < Genetico.PESO_MAXIMO){
         setPeso(peso);
+        itens.addAll(Genetico.mochila);
         System.out.println("Atribuiu peso = "+ getPeso());
             return true;
         }else{
@@ -91,9 +95,21 @@ public class Individuo implements Comparable<Individuo> {
         return aptidao;
     }
 
-    public double[] getGenes() {
+    public int[] getGenes() {
+        /*for(Item item : itens){
+            System.out.println("Nome = " + item.getNome());
+            System.out.println("Peso = " + item.getPeso());
+            System.out.println("Quantidade ="+ item.getQtd());
+            System.out.println("Valor = "+ item.getValor());
+        }*/
+        //return new double[]{}
+        //return new double[]{qtdMilho, qtdSoja};
+        int genes[] = new int[itens.size()];
+        for(int i = 0; i < itens.size(); i++){
+            genes[i] = itens.get(i).getQtd();
+        }
         
-        return new double[]{qtdMilho, qtdSoja};
+        return genes;
     }
 
     private void avaliar() {
