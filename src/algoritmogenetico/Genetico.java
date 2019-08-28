@@ -33,10 +33,10 @@ public class Genetico {
         populacao.iniciarPopulacao(TAMANHODAPOPULACAO);
         do {
             populacao = gerarPopulacao();
-
+            
+            System.out.println("*******************************************************************");
             System.out.println("Geracao " + geracao + "| Melhor " + populacao.getIndividuo(TAMANHODAPOPULACAO-1));
             //populacao.imprimePopulacao();
-           
 
             if (ESTAGNA) {
                 contaEstagnacao();
@@ -137,12 +137,24 @@ public class Genetico {
         int[] filho1 = new int[pai1.length];
 
         if (r.nextDouble() <= TAXADECRUZAMENTO) {
+            
+            int tam = mochila.size();
+             //metade dos elementos do pai 0 ficam no filho 0 
+            System.arraycopy(pai0, 0, filho0, 0, tam / 2);
+            //outra metade fica no filho 1
+            System.arraycopy(pai0, tam / 2, filho1, tam / 2, tam - tam / 2);
+
+            //metade dos elementos do pai 1 ficam no filho 0
+            System.arraycopy(pai1, 0, filho1, 0, tam / 2);
+            //outra metade fica no filho1
+            System.arraycopy(pai1, tam / 2, filho0, tam / 2, tam - tam / 2);
+            /*
             // se tiver mais genes, adapta os pontos de corte
             System.arraycopy(pai0, 0, filho0, 0, 1);
             System.arraycopy(pai0, 1, filho1, 1, 1);
 
             System.arraycopy(pai1, 0, filho1, 0, 1);
-            System.arraycopy(pai1, 1, filho0, 1, 1);
+            System.arraycopy(pai1, 1, filho0, 1, 1);*/
         } else {
             filho0 = pai0;
             filho1 = pai1;
