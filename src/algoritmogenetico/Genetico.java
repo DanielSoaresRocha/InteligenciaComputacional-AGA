@@ -13,7 +13,7 @@ public class Genetico {
     public static final double TAXADEMUTACAO = 0.05;
     static final double TAXADECRUZAMENTO = 0.9;
 
-    static final boolean ELITISMO = false;
+    static final boolean ELITISMO = true;
     static final boolean ESTAGNA = true; //se controla ou nao a estagnacao
     static final double VALORESTAGNA = 200; //valor da estagnacao maxima
 
@@ -34,8 +34,9 @@ public class Genetico {
         do {
             populacao = gerarPopulacao();
 
-            System.out.println("Geracao " + geracao + "| Melhor " + populacao.getIndividuo(TAMANHODAPOPULACAO-1)
-            +"\n peso ocupado na mochila = " + populacao.getIndividuo(TAMANHODAPOPULACAO-1).getPeso());
+            System.out.println("Geracao " + geracao + "| Melhor " + populacao.getIndividuo(TAMANHODAPOPULACAO-1));
+            //populacao.imprimePopulacao();
+           
 
             if (ESTAGNA) {
                 contaEstagnacao();
@@ -52,7 +53,7 @@ public class Genetico {
         Populacao novaPopulacao = new Populacao();
 
         if (ELITISMO) {
-            novaPopulacao.setIndividuo(populacao.getIndividuo(0));
+            novaPopulacao.setIndividuo(populacao.getIndividuo(TAMANHODAPOPULACAO-1));
         }
 
         // insere novos individuos na nova populacao, ate atingir o tamanho maximo
@@ -73,7 +74,7 @@ public class Genetico {
             a = r.nextInt(TAMANHODAPOPULACAO);
             b = r.nextInt(TAMANHODAPOPULACAO);
             //considerando que a populacao esta ordenada, o individuo na posicao menor eh melhor
-            if (a < b) {
+            if (a > b) {
                 pais.add(populacao.getIndividuo(a));
             } else {
                 pais.add(populacao.getIndividuo(b));
@@ -129,11 +130,11 @@ public class Genetico {
 
     private ArrayList<Individuo> cruzamento(ArrayList<Individuo> pais) {
         
-        double[] pai0 = pais.get(0).getGenes();
-        double[] pai1 = pais.get(1).getGenes();
+        int[] pai0 = pais.get(0).getGenes();
+        int[] pai1 = pais.get(1).getGenes();
 
-        double[] filho0 = new double[pai0.length];
-        double[] filho1 = new double[pai1.length];
+        int[] filho0 = new int[pai0.length];
+        int[] filho1 = new int[pai1.length];
 
         if (r.nextDouble() <= TAXADECRUZAMENTO) {
             // se tiver mais genes, adapta os pontos de corte
@@ -155,8 +156,8 @@ public class Genetico {
     }
 
     private void contaEstagnacao() {
-        if (melhorAptidaoAnterior == -1 || populacao.getIndividuo(0).getAptidao() != melhorAptidaoAnterior) {
-            melhorAptidaoAnterior = populacao.getIndividuo(0).getAptidao();
+        if (melhorAptidaoAnterior == -1 || populacao.getIndividuo(TAMANHODAPOPULACAO-1).getAptidao() != melhorAptidaoAnterior) {
+            melhorAptidaoAnterior = populacao.getIndividuo(TAMANHODAPOPULACAO-1).getAptidao();
             contEstagnar = 1;
         } else {
             contEstagnar++;
