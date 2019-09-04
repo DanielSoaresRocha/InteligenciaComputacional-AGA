@@ -68,7 +68,7 @@ public class Particula implements Comparable<Particula> {
     
     
     public void avaliar(){
-        valorMelhorPosicao = 0.0;
+        valorPosicaoAtual = 0.0; //valor Melhor particula
         for(int i = 0; i < posicaoAtual.length; i++){
             if(posicaoAtual[i] == 1){
                 valorPosicaoAtual = valorPosicaoAtual + valor[i];
@@ -119,8 +119,10 @@ public class Particula implements Comparable<Particula> {
     //Verifica se o valor da posicao atual eh melhor que o valor da melhor solucao ja encontrada
     //Se for, substitui
     public void avaliarSolucao() {
+        //FALOU CHAMAR O AVALIAR
+        avaliar();
         if (valorPosicaoAtual > valorMelhorPosicao) {
-            System.out.println("anterior = "+ valorMelhorPosicao+ "posterior = "+ valorPosicaoAtual);
+            //System.out.println("anterior = "+ valorMelhorPosicao+ "posterior = "+ valorPosicaoAtual);
             valorMelhorPosicao = valorPosicaoAtual;
             System.arraycopy(posicaoAtual, 0, melhorPosicao, 0, posicaoAtual.length);
             
@@ -180,13 +182,15 @@ public class Particula implements Comparable<Particula> {
     //Compara as particulas pela melhor solucao que cada uma tem
     @Override
     public int compareTo(Particula o) {
-        if (valorMelhorPosicao != o.getValorMelhorPosicao()) {
+        /*if (valorMelhorPosicao != o.getValorMelhorPosicao()) {
             return valorMelhorPosicao.compareTo(o.getValorMelhorPosicao());
         } else {
             Integer thistam = this.getAtributos().size();
             Integer anothertam = o.getAtributos().size();
             return thistam.compareTo(anothertam);
-        }
+        }*/
+        //SO PRECISA DISSO
+        return valorMelhorPosicao.compareTo(o.getValorMelhorPosicao());
     }
 
 }

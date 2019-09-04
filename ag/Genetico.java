@@ -1,4 +1,4 @@
-package algoritmogenetico;
+package ag;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -186,13 +186,16 @@ public class Genetico {
             Item item = new Item("",0,0,0);
             System.out.println("Digite o nome do item: "+(i+1));
             item.setNome(leitor.next());
-            System.out.println("Digite o peso deste item: ");
-            item.setPeso(leitor.nextInt());
             System.out.println("Digite o valor do item:");
             item.setValor(leitor.nextInt());
+            System.out.println("Digite o peso deste item: ");
+            item.setPeso(leitor.nextInt());
             
             mochila.add(item);
             System.out.println("----------------------------------------------");
         }
+        System.out.println("===================================================");
+        System.out.println("Digite o peso maximo da mochila:");
+        PESO_MAXIMO = leitor.nextInt();
     }
 }

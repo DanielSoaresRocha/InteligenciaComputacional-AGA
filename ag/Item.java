@@ -1,4 +1,4 @@
-package algoritmogenetico;
+package ag;
 
 
 public class Item {

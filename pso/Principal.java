@@ -1,9 +1,10 @@
 package pso;
 
 import java.util.ArrayList;
+/*
 import featureselectionwraper.BaseDeDados;
-import featureselectionwraper.FeatureSelection;
-import java.sql.Time;
+import featureselectionwraper.FeatureSelection;*/
+import util.Time;
 import java.util.Scanner;
 
 /**
@@ -18,29 +19,18 @@ public class Principal {
     static final double VMAX = 6; //velocidade maxima
     static final boolean VELCONTROL = true; //se controla ou nao a velocidade
     
-    static final int QTDPARTICULAS = 200;
-    static final int QTDITERACOES = 50;
+    static final int QTDPARTICULAS = 400;
+    static final int QTDITERACOES = 1000;
     
     static double PESO[];
     static double VALOR[];
     static int CAPACIDADE;
     static int QUANTIDADE;
     
-  /*
-    FAZ PARTE DA SOLUÇÃO DA PROFESSORA
 
-    static final BaseDeDados BASE = BaseDeDados.KEYSTROKE;
-    static final String MODELO = "naive";
-
-    */
 
     public static void main(String[] args) {
-        /*Nuvem nuvemParticulas = new Nuvem(QTDPARTICULAS);
-        nuvemParticulas.executarPSO();
-        ArrayList<Integer> selecionados = nuvemParticulas.getMelhorSolucaoNuvem();
-        FeatureSelection fs = new FeatureSelection(BASE.NOMEBASE, MODELO);
-        fs.removerAtributos(selecionados, true, "PSO");
-        */
+        
         
         Scanner scanner = new Scanner(System.in);
         System.out.println("Quantidade de itens: ");
@@ -50,7 +40,7 @@ public class Principal {
         VALOR = new double[QUANTIDADE];
         
         for(int i = 0; i < QUANTIDADE; i++){
-            System.out.println("Digite o Objeto " + (i+1));
+            System.out.println("Digite o valor do Objeto " + (i+1));
             VALOR[i] = scanner.nextDouble();
             
             System.out.println("Digite o peso " + (i+1));
@@ -60,11 +50,16 @@ public class Principal {
         System.out.println("Digite a capacidade da Mochila");
         CAPACIDADE = scanner.nextInt();
         
+        util.Time tempo = new util.Time();
         Nuvem nuvem = new Nuvem(QUANTIDADE);
         nuvem.executarPSO();
-        
 
         System.out.println("------PROCESSO CONCLUIDO------");
+        
+        System.out.println("\nTempo de execução: " +  tempo );
+        
+        Runtime rt = Runtime.getRuntime();
+        System.out.println("Uso de memória  = " +(rt.totalMemory()-rt.freeMemory())/(1000*1000)+"M");
     }
 
 }

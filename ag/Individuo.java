@@ -1,4 +1,4 @@
-package algoritmogenetico;
+package ag;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,7 +67,7 @@ public class Individuo implements Comparable<Individuo> {
         do {
             Random r = new Random();
 
-            itens.get(posicao).setQtd(r.nextInt(5 + 1));
+            itens.get(posicao).setQtd(r.nextInt(2));//5 + 1
 
         } while (!validar());
         avaliar();
@@ -75,7 +75,7 @@ public class Individuo implements Comparable<Individuo> {
 
     private void setQtdItens() {
         itens.forEach((item) -> {
-            item.setQtd(random.nextInt(5 + 1));
+            item.setQtd(random.nextInt(2));//5+1
         });
 
         System.out.println("---------------------------------------------");

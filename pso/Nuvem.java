@@ -2,8 +2,9 @@ package pso;
 
 import java.util.ArrayList;
 import java.util.Collections;
+/*
 import featureselectionwraper.Classificador;
-import featureselectionwraper.Modelos;
+import featureselectionwraper.Modelos;*/
 
 /**
  *
@@ -89,6 +90,7 @@ public class Nuvem {
         System.out.println("Iteracao " + iteracao + "| Melhor " + valorMelhorPosicaoNuvem);
     }
 
+    /*NAO PRECISA DESSE METODO
     public ArrayList<Integer> getMelhorSolucaoNuvem() {
         ArrayList<Integer> selecionados = new ArrayList<>();
         for (int i = 0; i < melhorPosicaoNuvem.length; i++) {
@@ -97,6 +99,6 @@ public class Nuvem {
             }
         }
         return selecionados;
-    }
+    }*/
 
 }
